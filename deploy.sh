@@ -10,8 +10,8 @@ module add deploy
 echo "now deploying to ${SOFT_DIR}"
 cd ${WORKSPACE}/${NAME}-${VERSION}
 echo "Java $VERSION will now go into ${SOFT_DIR}/"
-mkdir -p ${SOFT_DIR}/
-tar xfz ${SRC_DIR}/${SOURCE_FILE} -C ${SOFT_DIR}/${NAME}-${VERSION} --skip-old-files --strip-components=1
+mkdir -p ${SOFT_DIR}
+tar xfz ${SRC_DIR}/${SOURCE_FILE} -C ${SOFT_DIR} --skip-old-files --strip-components=1
 
 
 # TODO - see if Java works.
