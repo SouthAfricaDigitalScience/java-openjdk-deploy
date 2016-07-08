@@ -1,7 +1,7 @@
 #!/bin/bash -e
 . /etc/profile.d/modules.sh
 module load ci
-cd ${NAME}-${VERSION}
+SOURCE_FILE=${NAME}-${VERSION}-linux-x64.tar.gz
 
 tar xfz ${SRC_DIR}/${SOURCE_FILE} -C ${SOFT_DIR} --skip-old-files --strip-components=1
 echo "making module"
