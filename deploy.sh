@@ -11,8 +11,8 @@ echo "now deploying to ${SOFT_DIR}"
 cd ${WORKSPACE}/${NAME}-${VERSION}
 echo "Java $VERSION will now go into ${SOFT_DIR}/"
 mkdir -p ${SOFT_DIR}
+mkdir -p ${LIBRARIES_MODULES}/${NAME}
 tar xfz ${SRC_DIR}/${SOURCE_FILE} -C ${SOFT_DIR} --skip-old-files --strip-components=1
-
 
 # TODO - see if Java works.
 (
@@ -26,14 +26,13 @@ puts stderr " that the [module-info name] module is not available"
 }
 module-whatis "$NAME $VERSION."
 setenv JAVA_VERSION $VERSION
-setenv JAVA_DIR                 $::env(CVMFS_DIR)/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION
-setenv JAVA_HOME                $::env(CVMFS_DIR)/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION
+setenv JAVA_DIR                                $::env(CVMFS_DIR)/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION
+setenv JAVA_HOME                           $::env(CVMFS_DIR)/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION
 prepend-path LD_LIBRARY_PATH    $::env(JAVA_DIR)/lib
-prepend-path PATH               $::env(JAVA_DIR)/bin
+prepend-path PATH                            $::env(JAVA_DIR)/bin
 MODULE_FILE
-) > modules/${VERSION}
-mkdir -p ${LIBRARIES_MODULES}/${NAME}
-cp modules/${VERSION} ${LIBRARIES_MODULES}/${NAME}
+) > ${LIBRARIES_MODULES}/${NAME}/${VERSION}
+
 
 echo "Checking java module"
 module add $NAME/$VERSION
