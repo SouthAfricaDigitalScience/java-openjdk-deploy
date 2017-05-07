@@ -37,8 +37,8 @@ prepend-path LD_LIBRARY_PATH    $::env(JAVA_DIR)/lib
 prepend-path PATH                            $::env(JAVA_DIR)/bin
 MODULE_FILE
 ) > modules/${VERSION}
-mkdir -p ${LIBRARIES_MODULES}/${NAME}
-cp modules/${VERSION} ${LIBRARIES_MODULES}/${NAME}
+mkdir -vp ${LIBRARIES}/${NAME}
+cp modules/${VERSION} ${LIBRARIES}/${NAME}
 
 echo "Checking java module"
 module add $NAME/$VERSION
